@@ -1,0 +1,9 @@
+# build folders
+bin/
+bin-int/
+
+# visual studio files
+.vs/
+
+# vcxproj user files
+**/*.vcxproj.user
