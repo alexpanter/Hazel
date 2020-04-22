@@ -10,5 +10,5 @@ ready for consumption in any case, and any usage of Hazel Engine for
 private or commercial use shall refer to the original github repository
 for Hazel Engine.
 
-I explicitly revoke all rights to the files in this repository, and shall refrain
+I explicitly abandon all rights to the files in this repository, and shall refrain
 from quoting myself as its author.
