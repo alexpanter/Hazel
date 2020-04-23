@@ -5,5 +5,9 @@ bin-int/
 # visual studio files
 .vs/
 
-# vcxproj user files
+# visual studio project files
+**/*.sln
+**/*.vcxproj
+**/*.vcxproj.filters
 **/*.vcxproj.user
+
