@@ -1,9 +1,7 @@
 #pragma once
 
+#include "hzpch.h"
 #include "Hazel/Core.h"
-
-#include <string>
-#include <functional>
 
 namespace Hazel
 {
@@ -21,6 +19,8 @@ namespace Hazel
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
+#pragma warning(push)
+#pragma warning(disable: 26812) // prefer 'enum class' over 'enum'
 	enum EventCategory
 	{
 		None = 0,
@@ -30,6 +30,7 @@ namespace Hazel
 		EventCategoryMouse          = BIT(3),
 		EventCategoryMouseButton    = BIT(4)
 	};
+
 
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
@@ -46,10 +47,11 @@ namespace Hazel
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
-		inline bool IsCategory(EventCategory category)
+		inline bool IsInCategory(EventCategory category)
 		{
 			return GetCategoryFlags() & category;
 		}
+#pragma warning(pop)
 	protected:
 		bool m_Handled = false;
 	};

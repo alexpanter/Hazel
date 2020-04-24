@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-
 #include "Core.h"
 
 // a lot of code inside spdlog generates compiler warning.
@@ -9,7 +7,7 @@
 // while including the library.
 #pragma warning(push)
 #pragma warning(disable : 26451)  // arithmetic overflow
-#pragma warning(disable : 26812)  // disable warning about unscoped enums
+#pragma warning(disable : 26812)  // prefer 'enum class' over 'enum'
 #pragma warning(disable: 26495)   // unitizialized member variable
 #pragma warning(disable: 6385)    // reading invalid data (readable size is 4 bytes,
                                   // but 'fspecs.sign' bytes may be read)
@@ -17,6 +15,8 @@
 	#pragma warning(disable: 6387)
 #endif
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h" // allows printing custom objects through std::cout
+                             // using std::ostream to the log.
 #include "spdlog/sinks/stdout_color_sinks.h"
 #pragma warning(pop)
 
@@ -46,8 +46,8 @@ namespace Hazel
 #define HZ_CORE_FATAL(...)   ::Hazel::Log::GetCoreLogger()->critical(__VA_ARGS__);
 
 // Client log macros
-#define HZ_TRACE(...) ::Hazel::Log::GetCoreLogger()->trace   (__VA_ARGS__);
-#define HZ_INFO(...)  ::Hazel::Log::GetCoreLogger()->info    (__VA_ARGS__);
-#define HZ_WARN(...)  ::Hazel::Log::GetCoreLogger()->warn    (__VA_ARGS__);
-#define HZ_ERROR(...) ::Hazel::Log::GetCoreLogger()->error   (__VA_ARGS__);
-#define HZ_FATAL(...) ::Hazel::Log::GetCoreLogger()->critical(__VA_ARGS__);
+#define HZ_TRACE(...) ::Hazel::Log::GetClientLogger()->trace   (__VA_ARGS__);
+#define HZ_INFO(...)  ::Hazel::Log::GetClientLogger()->info    (__VA_ARGS__);
+#define HZ_WARN(...)  ::Hazel::Log::GetClientLogger()->warn    (__VA_ARGS__);
+#define HZ_ERROR(...) ::Hazel::Log::GetClientLogger()->error   (__VA_ARGS__);
+#define HZ_FATAL(...) ::Hazel::Log::GetClientLogger()->critical(__VA_ARGS__);
