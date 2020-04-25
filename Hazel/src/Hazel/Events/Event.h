@@ -51,6 +51,7 @@ namespace Hazel
 		{
 			return GetCategoryFlags() & category;
 		}
+		inline bool Handled() const { return m_Handled; }
 #pragma warning(pop)
 	protected:
 		bool m_Handled = false;
